@@ -1,0 +1,458 @@
+{
+  "lastCompletedAction": "CLOSED",
+  "physicalRoofPosition": "CLOSED",
+  "canopyState": "AUTO",
+  "lastActionTimestamp": 1791357044780,
+  "recentEvents": [
+    {
+      "id": "roof_1791357039898_gckh",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791357039898,
+      "timeLabel": "7:10:39 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: RAIN WATCH (Rain Risk 39/100, 30–59 band) — holding CLOSED state"
+    },
+    {
+      "id": "roof_1791357032263_78lt",
+      "action": "STOP",
+      "duration": 0,
+      "timestamp": 1791357032263,
+      "timeLabel": "7:10:32 AM",
+      "source": "EMERGENCY_STOP",
+      "details": "Motor completely terminated by operator. Auto-pilot locked."
+    },
+    {
+      "id": "roof_1791356227145_ea3s",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791356227145,
+      "timeLabel": "6:57:07 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Combined Mode: Critical sensor state cannot be determined (Hardware sensors offline or disconnected) — SAFE CLOSED"
+    },
+    {
+      "id": "roof_1791356169681_tin7",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791356169681,
+      "timeLabel": "6:56:09 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Daylight active (6:14 AM to 6:31 PM), Rain Risk 21 (< 30), precip < 0.5mm & 10km perimeter clear — AUTONOMOUS OPEN"
+    },
+    {
+      "id": "roof_1791356163682_0e85",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791356163682,
+      "timeLabel": "6:56:03 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Combined Mode: Critical sensor state cannot be determined (Hardware sensors offline or disconnected) — SAFE CLOSED"
+    },
+    {
+      "id": "roof_1791356064862_71zc",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791356064862,
+      "timeLabel": "6:54:24 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Daylight active (6:14 AM to 6:31 PM), Rain Risk 14 (< 30), precip < 0.5mm & 10km perimeter clear — AUTONOMOUS OPEN"
+    },
+    {
+      "id": "roof_1791356058860_r301",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791356058860,
+      "timeLabel": "6:54:18 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Combined Mode: Critical sensor state cannot be determined (Hardware sensors offline or disconnected) — SAFE CLOSED"
+    },
+    {
+      "id": "roof_1791355928612_tkks",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791355928612,
+      "timeLabel": "6:52:08 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Daylight active (6:19 AM to 6:16 PM) & all forecast parameters clear (<30% rain risk, 10km perimeter dry) — opening for solar drying"
+    },
+    {
+      "id": "roof_1791355922943_qu0n",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791355922943,
+      "timeLabel": "6:52:02 AM",
+      "source": "AI_GUARDIAN",
+      "details": "AI rain shield engaged"
+    },
+    {
+      "id": "roof_1791355878605_eghj",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791355878605,
+      "timeLabel": "6:51:18 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Daylight active (6:19 AM to 6:16 PM) & all forecast parameters clear (<30% rain risk, 10km perimeter dry) — opening for solar drying"
+    },
+    {
+      "id": "roof_1791355853505_5nai",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791355853505,
+      "timeLabel": "6:50:53 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Sensors Mode: Critical sensor offline/faulty (Sensor telemetry stale (662s since last packet)) — failsafe CLOSED to protect arecanuts"
+    },
+    {
+      "id": "roof_1791355722767_zscu",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791355722767,
+      "timeLabel": "6:48:42 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Daylight active (6:19 AM to 6:15 PM) & all forecast parameters clear (<30% rain risk, 10km perimeter dry) — opening for solar drying"
+    },
+    {
+      "id": "roof_1791354910480_xoag",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791354910480,
+      "timeLabel": "6:35:10 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Combined Mode: Critical sensor fault (Hardware sensors offline or disconnected) — failsafe CLOSED to protect arecanuts"
+    },
+    {
+      "id": "roof_1791354860527_fygg",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791354860527,
+      "timeLabel": "6:34:20 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Daylight active (6:14 AM to 6:31 PM) & all forecast parameters clear (<30% rain risk, 10km perimeter dry) — opening for solar drying"
+    },
+    {
+      "id": "roof_1791354677282_148a",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791354677282,
+      "timeLabel": "6:31:17 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Combined Mode: Low sunlight & heavy cloudy weather (93% clouds >= 50% threshold) — canopy closed to protect drying bed"
+    },
+    {
+      "id": "roof_1791354670121_tftz",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791354670121,
+      "timeLabel": "6:31:10 AM",
+      "source": "AI_GUARDIAN",
+      "details": "Sunlight drying optimal"
+    },
+    {
+      "id": "roof_1791354457231_prk8",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791354457231,
+      "timeLabel": "6:27:37 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Low sunlight & heavy overcast cloudy sky (93% clouds >= 50% threshold) — canopy closed to protect drying bed"
+    },
+    {
+      "id": "roof_1791354451234_szzj",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791354451234,
+      "timeLabel": "6:27:31 AM",
+      "source": "AI_GUARDIAN",
+      "details": "Sunlight drying optimal"
+    },
+    {
+      "id": "roof_1791354425221_nixu",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791354425221,
+      "timeLabel": "6:27:05 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Low sunlight & heavy overcast cloudy sky (93% clouds >= 50% threshold) — canopy closed to protect drying bed"
+    },
+    {
+      "id": "roof_1791354418223_mu0e",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791354418223,
+      "timeLabel": "6:26:58 AM",
+      "source": "AI_GUARDIAN",
+      "details": "Sunlight drying optimal"
+    },
+    {
+      "id": "roof_1791354337951_sjq7",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791354337951,
+      "timeLabel": "6:25:37 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Low sunlight & heavy overcast cloudy sky (93% clouds >= 50% threshold) — canopy closed to protect drying bed"
+    },
+    {
+      "id": "roof_1791354318669_py09",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791354318669,
+      "timeLabel": "6:25:18 AM",
+      "source": "AI_GUARDIAN",
+      "details": "Sunlight drying optimal"
+    },
+    {
+      "id": "roof_1791354235176_olqx",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791354235176,
+      "timeLabel": "6:23:55 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Low sunlight & heavy overcast cloudy sky (93% clouds >= 50% threshold) — canopy closed to protect drying bed"
+    },
+    {
+      "id": "roof_1791354227652_sh45",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791354227652,
+      "timeLabel": "6:23:47 AM",
+      "source": "AI_GUARDIAN",
+      "details": "Sunlight drying optimal"
+    },
+    {
+      "id": "roof_1791354208074_y6i8",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791354208074,
+      "timeLabel": "6:23:28 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Low sunlight & heavy overcast cloudy sky (93% clouds >= 50% threshold) — canopy closed to protect drying bed"
+    },
+    {
+      "id": "roof_1791354202033_36ck",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791354202033,
+      "timeLabel": "6:23:22 AM",
+      "source": "AI_GUARDIAN",
+      "details": "Sunlight drying optimal"
+    },
+    {
+      "id": "roof_1791354081542_eftb",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791354081542,
+      "timeLabel": "6:21:21 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Combined Mode: Critical sensor fault (Hardware sensors offline or disconnected) — failsafe CLOSED to protect arecanuts"
+    },
+    {
+      "id": "roof_1791354080654_1hwv",
+      "action": "STOP",
+      "duration": 0,
+      "timestamp": 1791354080654,
+      "timeLabel": "6:21:20 AM",
+      "source": "EMERGENCY_STOP",
+      "details": "Motor completely terminated by operator. Auto-pilot locked."
+    },
+    {
+      "id": "roof_1791354078971_hngv",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791354078971,
+      "timeLabel": "6:21:18 AM",
+      "source": "WEB_UI",
+      "details": "Canopy Mode set to CLOSED (4.88s)"
+    },
+    {
+      "id": "roof_1791353626363_m4a4",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791353626363,
+      "timeLabel": "6:13:46 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Low sunlight & heavy overcast cloudy sky (51% clouds >= 50% threshold) — canopy closed to protect drying bed"
+    },
+    {
+      "id": "roof_1791353624456_apgt",
+      "action": "STOP",
+      "duration": 0,
+      "timestamp": 1791353624456,
+      "timeLabel": "6:13:44 AM",
+      "source": "EMERGENCY_STOP",
+      "details": "Motor completely terminated by operator. Auto-pilot locked."
+    },
+    {
+      "id": "roof_1791187033008_iusk",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791187033008,
+      "timeLabel": "7:57:13 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Sensors Mode: LDR detects low light (32% <= 60% threshold) — sealing canopy"
+    },
+    {
+      "id": "roof_1791187024582_2mey",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791187024582,
+      "timeLabel": "7:57:04 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Daylight active (6:14 AM to 6:31 PM) & all forecast parameters clear (<30% rain risk, 10km perimeter dry) — opening for solar drying"
+    },
+    {
+      "id": "roof_1791186141934_jeoe",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791186141934,
+      "timeLabel": "7:42:21 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Sensors Mode: LDR detects low light (32% <= 60% threshold) — sealing canopy"
+    },
+    {
+      "id": "roof_1791186123009_rqi2",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1791186123009,
+      "timeLabel": "7:42:03 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Sensors Mode: LDR confirms 93% light detected (> 60%) & sensor plate is dry — working perfectly (astronomical sunset/sunrise ignored)"
+    },
+    {
+      "id": "roof_1791185372464_6dai",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791185372464,
+      "timeLabel": "7:29:32 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Combined Mode: Sunset has occurred (6:17 PM) — canopy closed for night dew protection"
+    },
+    {
+      "id": "roof_1791185369975_2hva",
+      "action": "STOP",
+      "duration": 0,
+      "timestamp": 1791185369975,
+      "timeLabel": "7:29:29 AM",
+      "source": "EMERGENCY_STOP",
+      "details": "Motor completely terminated by operator. Auto-pilot locked."
+    },
+    {
+      "id": "roof_1791185228939_cwy1",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1791185228939,
+      "timeLabel": "7:27:08 AM",
+      "source": "AUTO_WEATHER",
+      "details": "Forecast Mode: Sunset has occurred (6:18 PM) — canopy closed for night dew protection"
+    },
+    {
+      "id": "roof_1791185225588_tbjb",
+      "action": "STOP",
+      "duration": 0,
+      "timestamp": 1791185225588,
+      "timeLabel": "7:27:05 AM",
+      "source": "EMERGENCY_STOP",
+      "details": "Motor completely terminated by operator. Auto-pilot locked."
+    },
+    {
+      "id": "roof_1790081013858_nwd5",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1790081013858,
+      "timeLabel": "12:43:33 PM",
+      "source": "AUTO_WEATHER",
+      "details": "Combined Mode: Sunset has occurred (6:31 PM) — canopy closed for night dew protection"
+    },
+    {
+      "id": "roof_1790080356352_7f4m",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1790080356352,
+      "timeLabel": "12:32:36 PM",
+      "source": "AUTO_WEATHER",
+      "details": "Online Forecast: Clear skies (<30% risk) and dry perimeter across current and nearest locations — open for drying"
+    },
+    {
+      "id": "roof_1790080291077_rwi3",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1790080291077,
+      "timeLabel": "12:31:31 PM",
+      "source": "AUTO_WEATHER",
+      "details": "LDR sensor detects 34% sunlight intensity (<= 60% threshold) — sealing canopy"
+    },
+    {
+      "id": "roof_1790080282326_3fv5",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1790080282326,
+      "timeLabel": "12:31:22 PM",
+      "source": "AUTO_WEATHER",
+      "details": "Online Forecast: Clear skies (<30% risk) and dry perimeter across current and nearest locations — open for drying"
+    },
+    {
+      "id": "roof_1790080243868_808o",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1790080243868,
+      "timeLabel": "12:30:43 PM",
+      "source": "AUTO_WEATHER",
+      "details": "Sensors Mode: LDR sensor detects 35% sunlight (<= 60% threshold) — sealing canopy"
+    },
+    {
+      "id": "roof_1790079921648_k54x",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1790079921648,
+      "timeLabel": "12:25:21 PM",
+      "source": "AUTO_WEATHER",
+      "details": "Online Forecast: Clear skies (<30% risk) and dry perimeter across current and nearest locations — open for drying"
+    },
+    {
+      "id": "roof_1790079756161_dlhj",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1790079756161,
+      "timeLabel": "12:22:36 PM",
+      "source": "AUTO_WEATHER",
+      "details": "LDR sensor detects 22% sunlight intensity (<= 60% threshold) — sealing canopy"
+    },
+    {
+      "id": "roof_1790079750049_0x8t",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1790079750049,
+      "timeLabel": "12:22:30 PM",
+      "source": "AUTO_WEATHER",
+      "details": "Combined Mode: Local bed dry with 72% sunlight (>60%) & nearest 10km perimeter is clear — maintaining solar drying despite online alert"
+    },
+    {
+      "id": "roof_1790079728152_4ifd",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1790079728152,
+      "timeLabel": "12:22:08 PM",
+      "source": "AUTO_WEATHER",
+      "details": "Priority #1: Rain detected on drying bed sensor plate — sealing canopy immediately to protect arecanuts"
+    },
+    {
+      "id": "roof_1790079711592_7rcn",
+      "action": "OPEN",
+      "duration": 5.56,
+      "timestamp": 1790079711592,
+      "timeLabel": "12:21:51 PM",
+      "source": "AUTO_WEATHER",
+      "details": "Both sensor plate (74% sunlight, dry plate) & regional radar confirm clear — opening for optimal solar radiation"
+    },
+    {
+      "id": "roof_1790079698143_qyh8",
+      "action": "CLOSED",
+      "duration": 4.88,
+      "timestamp": 1790079698143,
+      "timeLabel": "12:21:38 PM",
+      "source": "AUTO_WEATHER",
+      "details": "LDR sensor detects 32% sunlight intensity (<= 60% threshold) — sealing canopy"
+    }
+  ]
+}
