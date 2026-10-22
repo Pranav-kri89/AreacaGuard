@@ -24,9 +24,21 @@ import {
   ExternalLink,
   Smartphone,
   RotateCcw,
+  Code,
+  Copy,
+  Check,
+  Terminal,
+  Wifi,
+  Key,
+  Link as LinkIcon,
+  Cpu,
+  Download,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 import { FarmSettings, HeaterDryerState, MotorPingStatus, AppLanguage } from '../types';
 import { DiagnosticAuditLog } from './DiagnosticAuditLog';
+import { generateArecaDryerEsp32Code } from '../utils/espArecaCode';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -43,9 +55,10 @@ interface SettingsModalProps {
   currentLightAdc?: number | null;
   language?: AppLanguage;
   initialTab?: TabType;
+  serverUrl?: string;
 }
 
-export type TabType = 'HEATER' | 'SENSORS' | 'ONLINE' | 'TELEGRAM' | 'MOTOR' | 'WIRING' | 'DIAGNOSTICS';
+export type TabType = 'HEATER' | 'SENSORS' | 'ONLINE' | 'TELEGRAM' | 'MOTOR' | 'WIRING' | 'DIAGNOSTICS' | 'ESP_CODE';
 
 export const SettingsModal: React.FC<SettingsModalProps> = ({
   isOpen,
@@ -62,8 +75,54 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   currentLightAdc,
   language: _language,
   initialTab = 'HEATER',
+  serverUrl,
 }) => {
   const [activeTab, setActiveTab] = useState<TabType>(initialTab);
+
+  // ESP32 Firmware Code Generator State
+  const [wifiSsid, setWifiSsid] = useState('realme P3 Ultra 5G');
+  const [wifiPassword, setWifiPassword] = useState('00000000');
+  const [customServerUrl, setCustomServerUrl] = useState(() => {
+    const origin = serverUrl || (typeof window !== 'undefined' ? window.location.origin : '');
+    return origin.startsWith('http') ? `${origin}/sensor-data` : 'http://YOUR_SERVER_IP:3000/sensor-data';
+  });
+  const [showWifiConfig, setShowWifiConfig] = useState(false);
+  const [copiedCode, setCopiedCode] = useState(false);
+
+  const generatedEspCode = generateArecaDryerEsp32Code({
+    wifiSsid,
+    wifiPassword,
+    serverUrl: customServerUrl,
+  });
+
+  const handleCopyEspCode = async () => {
+    try {
+      await navigator.clipboard.writeText(generatedEspCode);
+      setCopiedCode(true);
+      setTimeout(() => setCopiedCode(false), 3000);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = generatedEspCode;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      setCopiedCode(true);
+      setTimeout(() => setCopiedCode(false), 3000);
+    }
+  };
+
+  const handleDownloadInoFile = () => {
+    const blob = new Blob([generatedEspCode], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'areca_dryer_firmware.ino';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
 
   useEffect(() => {
     if (isOpen && initialTab) {
@@ -488,6 +547,19 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           >
             <Radio className="w-3.5 h-3.5 text-indigo-400" />
             <span>Link Test</span>
+          </button>
+
+          <button
+            id="tab-espcode"
+            onClick={() => setActiveTab('ESP_CODE')}
+            className={`py-1 px-2.5 text-xs font-semibold rounded-lg flex items-center gap-1.5 cursor-pointer transition-all whitespace-nowrap ${
+              activeTab === 'ESP_CODE'
+                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-xs'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Code className="w-3.5 h-3.5 text-emerald-400" />
+            <span>ESP32 Code</span>
           </button>
         </div>
       </nav>
@@ -1840,6 +1912,21 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 </table>
               </div>
             </div>
+
+            {/* Quick Link to ESP32 Firmware Code */}
+            <div className="p-3 bg-emerald-950/40 border border-emerald-500/30 rounded-xl flex items-center justify-between gap-2">
+              <div>
+                <span className="text-xs font-bold text-emerald-300 block">Ready to flash ESP32?</span>
+                <span className="text-[11px] text-slate-400">Get the exact Arduino sketch matching these pin connections.</span>
+              </div>
+              <button
+                onClick={() => setActiveTab('ESP_CODE')}
+                className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg text-xs cursor-pointer flex items-center gap-1.5 shrink-0"
+              >
+                <Code className="w-3.5 h-3.5" />
+                <span>Open ESP32 Code</span>
+              </button>
+            </div>
           </div>
         )}
 
@@ -1888,6 +1975,174 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
             {/* Embedded Creator Diagnostic Audit Log */}
             <DiagnosticAuditLog />
+          </div>
+        )}
+
+        {/* =========================================================================
+            TAB 7: ESP32 ARDUINO FIRMWARE CODE GENERATOR
+           ========================================================================= */}
+        {activeTab === 'ESP_CODE' && (
+          <div className="space-y-3">
+            {/* Header Banner */}
+            <div className="p-3.5 bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-md">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shrink-0">
+                  <Cpu className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                    <span>ESP32 Farm Dryer Firmware (.ino)</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono font-semibold">
+                      v2.4 Auto-Configured
+                    </span>
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Pre-configured with your sensor pins, 12V heater PWM, rain debouncing, and server telemetry.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 w-full sm:w-auto shrink-0">
+                <button
+                  onClick={handleDownloadInoFile}
+                  className="flex-1 sm:flex-none px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer border border-slate-700 shadow-sm"
+                  title="Download .ino file directly"
+                >
+                  <Download className="w-3.5 h-3.5 text-sky-400" />
+                  <span>Download .ino</span>
+                </button>
+
+                <button
+                  id="settings-copy-firmware-btn"
+                  onClick={handleCopyEspCode}
+                  className={`flex-1 sm:flex-none px-4 py-1.5 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-md ${
+                    copiedCode
+                      ? 'bg-emerald-500 text-white shadow-emerald-500/30'
+                      : 'bg-emerald-600 hover:bg-emerald-500 text-white active:scale-95'
+                  }`}
+                >
+                  {copiedCode ? (
+                    <>
+                      <Check className="w-3.5 h-3.5" />
+                      <span>Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copy ESP32 Code</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Collapsible / Quick Wi-Fi & Server Credentials */}
+            <div className="bg-slate-900/90 border border-slate-800 rounded-xl overflow-hidden shadow-sm">
+              <div className="px-3.5 py-2 flex items-center justify-between text-xs bg-slate-950/60 border-b border-slate-800/80">
+                <div className="flex items-center gap-2 text-slate-300">
+                  <Wifi className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-[11px] font-semibold text-white">
+                    Wi-Fi SSID: <span className="font-mono text-emerald-300">{wifiSsid}</span>
+                  </span>
+                </div>
+                <button
+                  onClick={() => setShowWifiConfig(!showWifiConfig)}
+                  className="text-[10px] sm:text-xs text-sky-400 hover:text-sky-300 font-bold flex items-center gap-1 cursor-pointer"
+                >
+                  <span>{showWifiConfig ? 'Hide Wi-Fi Settings' : 'Change Wi-Fi / URL'}</span>
+                  {showWifiConfig ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                </button>
+              </div>
+
+              {/* Troubleshooting Baud Banner */}
+              <div className="px-3.5 py-1.5 bg-amber-500/10 border-b border-amber-500/20 flex items-center gap-2 text-[10.5px] text-amber-200">
+                <Terminal className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span>
+                  <strong>Arduino IDE Serial Monitor:</strong> Set baud rate to <strong>115200 baud</strong>. (If set to 9600, you will see unreadable garbled characters).
+                </span>
+              </div>
+
+              {showWifiConfig && (
+                <div className="p-3 sm:p-4 bg-slate-950/80 grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+                  <div>
+                    <label className="text-slate-400 block mb-0.5 text-[10px] font-medium">Wi-Fi SSID (Hotspot / Router)</label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={wifiSsid}
+                        onChange={(e) => setWifiSsid(e.target.value)}
+                        placeholder="Wi-Fi Name"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-slate-600 focus:outline-hidden focus:border-emerald-500 font-mono"
+                      />
+                      <Wifi className="w-3 h-3 text-slate-500 absolute right-2.5 top-2.5" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-slate-400 block mb-0.5 text-[10px] font-medium">Wi-Fi Password</label>
+                    <div className="relative">
+                      <input
+                        type="password"
+                        value={wifiPassword}
+                        onChange={(e) => setWifiPassword(e.target.value)}
+                        placeholder="Wi-Fi Password"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-slate-600 focus:outline-hidden focus:border-emerald-500 font-mono"
+                      />
+                      <Key className="w-3 h-3 text-slate-500 absolute right-2.5 top-2.5" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-slate-400 block mb-0.5 text-[10px] font-medium">Server Sensor Endpoint</label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={customServerUrl}
+                        onChange={(e) => setCustomServerUrl(e.target.value)}
+                        placeholder="http://IP:3000/sensor-data"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-white text-[10.5px] placeholder-slate-600 focus:outline-hidden focus:border-emerald-500 font-mono"
+                      />
+                      <LinkIcon className="w-3 h-3 text-slate-500 absolute right-2.5 top-2.5" />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Quick Upload Instructions */}
+            <div className="p-3 bg-slate-900/60 border border-slate-800 rounded-xl space-y-1.5 text-xs">
+              <span className="font-bold text-slate-300 block text-[11px] uppercase tracking-wider">
+                Arduino IDE 3-Step Setup:
+              </span>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] text-slate-400">
+                <div className="p-2 rounded-lg bg-slate-950/60 border border-slate-800/80">
+                  <span className="font-bold text-emerald-400 block mb-0.5">1. Install Libraries</span>
+                  <span>Install <strong>PubSubClient</strong> &amp; <strong>DHT sensor library</strong> from Arduino Library Manager.</span>
+                </div>
+                <div className="p-2 rounded-lg bg-slate-950/60 border border-slate-800/80">
+                  <span className="font-bold text-sky-400 block mb-0.5">2. Paste Sketch</span>
+                  <span>Click <strong>Copy ESP32 Code</strong>, press <kbd className="bg-slate-800 px-1 py-0.5 rounded text-white font-mono">Ctrl+A</kbd> &amp; <kbd className="bg-slate-800 px-1 py-0.5 rounded text-white font-mono">Ctrl+V</kbd> into Arduino IDE.</span>
+                </div>
+                <div className="p-2 rounded-lg bg-slate-950/60 border border-slate-800/80">
+                  <span className="font-bold text-amber-400 block mb-0.5">3. Select Board &amp; Flash</span>
+                  <span>Select <strong>ESP32 Dev Module</strong>, COM port, and click Upload. Connects to Wi-Fi and starts automatic telemetry!</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Code Box with Scroll */}
+            <div className="rounded-xl border border-slate-800 bg-slate-950 overflow-hidden shadow-inner">
+              <div className="px-3 py-2 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between text-xs">
+                <span className="font-mono text-slate-400 text-[11px] flex items-center gap-1.5">
+                  <Code className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>areca_dryer_firmware.ino</span>
+                </span>
+                <span className="text-[10px] text-slate-500 font-mono">C++ / Arduino IDE</span>
+              </div>
+              <div className="p-3 sm:p-4 max-h-[380px] overflow-auto font-mono text-[11px] text-slate-300 leading-relaxed select-all">
+                <pre className="whitespace-pre">{generatedEspCode}</pre>
+              </div>
+            </div>
           </div>
         )}
       </main>

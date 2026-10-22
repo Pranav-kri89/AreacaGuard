@@ -66,7 +66,6 @@ import { SensorTelemetryPanel } from './components/SensorTelemetryPanel';
 import { AIPredictionView } from './components/AIPredictionView';
 import { AIChatDrawer } from './components/AIChatDrawer';
 import { TopControlModeBar } from './components/TopControlModeBar';
-import { EspCodeModal } from './components/EspCodeModal';
 import { SettingsModal, TabType } from './components/SettingsModal';
 import { AiLiveGuardianBox } from './components/AiLiveGuardianBox';
 import { FarmComparisonBoard } from './components/FarmComparisonBoard';
@@ -286,7 +285,6 @@ export default function App() {
   });
 
   // 8. Modals & AI Chat Drawer
-  const [isCodeModalOpen, setIsCodeModalOpen] = useState<boolean>(false);
   const [isLocationModalOpen, setIsLocationModalOpen] = useState<boolean>(false);
   const [isRadarModalOpen, setIsRadarModalOpen] = useState<boolean>(false);
   const [isTestModalOpen, setIsTestModalOpen] = useState<boolean>(false);
@@ -1358,16 +1356,6 @@ export default function App() {
               <span className="text-[11px] hidden sm:inline">Install</span>
             </button>
 
-            {/* ESP32 Arduino Firmware Code Button (Always visible on mobile & desktop) */}
-            <button
-              id="header-code-btn"
-              onClick={() => setIsCodeModalOpen(true)}
-              className="px-2 sm:px-2.5 py-1 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-500/50 text-indigo-300 hover:text-white text-xs font-bold flex items-center gap-1 cursor-pointer transition-all shrink-0 shadow-xs"
-              title="ESP32 Arduino Firmware Code (.ino) & Wiring Guide"
-            >
-              <Code className="w-3.5 h-3.5 text-indigo-400" />
-              <span className="text-[11px]">ESP Code</span>
-            </button>
 
             {/* Top Sheet Test Button (Inching & Precision Alignment) */}
             <button
@@ -1656,17 +1644,16 @@ export default function App() {
 
               <button
                 onClick={() => {
-                  setIsSidebarOpen(false);
-                  setIsCodeModalOpen(true);
+                  openSettingsWithTab('ESP_CODE');
                 }}
-                className="w-full px-3 py-2.5 rounded-xl text-xs font-bold text-indigo-300 hover:bg-slate-900 hover:text-white flex items-center justify-between cursor-pointer transition-colors border border-indigo-500/40 bg-indigo-500/10"
+                className="w-full px-3 py-2.5 rounded-xl text-xs font-bold text-emerald-300 hover:bg-slate-900 hover:text-white flex items-center justify-between cursor-pointer transition-colors border border-emerald-500/40 bg-emerald-500/10"
               >
                 <div className="flex items-center gap-3">
-                  <Code className="w-4 h-4 text-indigo-400" />
+                  <Code className="w-4 h-4 text-emerald-400" />
                   <span>ESP32 Arduino Code (.ino)</span>
                 </div>
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-mono font-bold">
-                  Arduino
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono font-bold">
+                  Inside Settings
                 </span>
               </button>
 
@@ -2009,7 +1996,7 @@ export default function App() {
             lastSeenSeconds={lastSeenSeconds}
             canopyMode={canopyMode}
             decisionMode={decisionMode}
-            onOpenCodeModal={() => setIsCodeModalOpen(true)}
+            onOpenCodeModal={() => openSettingsWithTab('ESP_CODE')}
           />
         )}
 
@@ -2072,14 +2059,7 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Firmware Code Modal */}
-      <EspCodeModal
-        isOpen={isCodeModalOpen}
-        onClose={() => setIsCodeModalOpen(false)}
-        serverUrl={window.location.origin}
-      />
-
-      {/* Unified Settings Modal (12V Heater, Sensor Calibration, Online Radar, Motor Timers & Wiring) */}
+      {/* Unified Settings Modal (12V Heater, Sensor Calibration, Online Radar, Motor Timers, Wiring & ESP32 Code) */}
       <SettingsModal
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
@@ -2095,6 +2075,7 @@ export default function App() {
         currentLightAdc={telemetry?.light_connected ? telemetry.light : null}
         language={language}
         initialTab={settingsInitialTab}
+        serverUrl={window.location.origin}
       />
 
       {/* Instant Location Search & Picker Modal */}
